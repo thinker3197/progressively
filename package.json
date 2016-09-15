@@ -1,0 +1,30 @@
+{
+  "name": "progressively",
+  "version": "0.1",
+  "description": "A JavaScript library to load images progressively",
+  "main": "./dist/progressively.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinker3197/progressively.git"
+  },
+  "keywords": [
+    "progressive",
+    "lazy-load",
+    "images"
+  ],
+  "author": "Ashish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thinker3197/progressively/issues"
+  },
+  "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0"
+  }
+}
