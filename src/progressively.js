@@ -8,16 +8,46 @@
 
 ;
 (function(window) {
-    init = function(elems, options) {
-    	if(typeof elems == 'object' && typeof options == 'object') {
-    		/*
-    		 * Parse HTMLElements and load them progressively
-    		 */
-    	}
+    'use strict';
 
-    	else {
-    		throw Error('Type mismatch!')
+    var init,
+    	defaults;
+
+    /*
+     * default settings
+     */
+
+    defaults = {
+    	async: true,
+    	blur: 20,
+    };
+
+    /*
+     * function to extend to objects
+     * @params primaryObject object, secondaryObject object
+     * @return object
+     */
+
+    function extend(primaryObject, secondaryObject) {
+    	for(var prop in primaryObject) {
+    		console.log
     	}
+    }
+
+    init = function(elems, options) {
+        options = options || {};
+        elem = elems || [];
+
+        /*
+         * Extend default settings with user options
+         */
+
+        extend(options, defaults);
+        /*
+         * Parse HTMLElements and load them progressively
+         */
+
+        parseElements(this, elems);
     };
 
     /*
@@ -45,4 +75,4 @@
      */
 
     window.progressively = init;
-}('undefined' !== typeof window) ? window : {});
+}('undefined' !== typeof window ? window : {}));
