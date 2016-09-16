@@ -30,24 +30,29 @@
 
     function extend(primaryObject, secondaryObject) {
     	for(var prop in primaryObject) {
-    		console.log
+    		primaryObject[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop];
     	}
+        return primaryObject;
     }
 
     init = function(elems, options) {
+        elems = elems || [];
         options = options || {};
-        elem = elems || [];
+
+        var fig, img;
+
 
         /*
          * Extend default settings with user options
          */
 
-        extend(options, defaults);
+        extend(defaults, options);
+
         /*
          * Parse HTMLElements and load them progressively
          */
 
-        parseElements(this, elems);
+        //parseElements(this, elems);
     };
 
     /*
