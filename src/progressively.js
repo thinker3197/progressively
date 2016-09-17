@@ -39,9 +39,6 @@
         elems = elems || [];
         options = options || {};
 
-        var fig, img;
-
-
         /*
          * Extend default settings with user options
          */
