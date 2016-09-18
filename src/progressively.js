@@ -11,15 +11,18 @@
     'use strict';
 
     var init,
-    	defaults;
+        extend,
+        loadImg,
+        parseElements,
+        defaults, settings, pe;
 
     /*
      * default settings
      */
 
     defaults = {
-    	async: true,
-    	blur: 20,
+        async: true,
+        blur: 20
     };
 
     /*
@@ -28,11 +31,39 @@
      * @return object
      */
 
-    function extend(primaryObject, secondaryObject) {
-    	for(var prop in primaryObject) {
-    		primaryObject[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop];
-    	}
-        return primaryObject;
+    extend = function et(primaryObject, secondaryObject) {
+        var o = {};
+        for (var prop in primaryObject) {
+            o[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop];
+        }
+        return o;
+    };
+
+    /*
+     * function to extend to objects
+     * @params primaryObject object, secondaryObject object
+     * @return object
+     */
+
+    loadImg = function li(el) {
+        el.style.background = '#eee';
+
+        if (defaults.async) {
+            var img = new Image();
+            img
+        } else {
+
+        }
+    };
+
+    parseElements = function pe(elems) {
+        if (elems === 'string') {
+            document.querySelectorAll(elems);
+        } else if (Array.isArray(elems)) {
+            for (var i = elems.length; i >= 0; --i) {
+                loadImg.call(undefined, elems[i]);
+            }
+        } else throw TypeError('Undefined format!');
     }
 
     init = function(elems, options) {
@@ -43,13 +74,13 @@
          * Extend default settings with user options
          */
 
-        extend(defaults, options);
+        settings = extend.call(undefined, defaults, options);
 
         /*
          * Parse HTMLElements and load them progressively
          */
 
-        //parseElements(this, elems);
+        return;
     };
 
     /*
