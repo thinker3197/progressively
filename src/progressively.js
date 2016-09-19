@@ -14,7 +14,8 @@
         extend,
         loadImg,
         parseElements,
-        defaults, settings, pe;
+        defaults, settings = {},
+        pe;
 
     /*
      * default settings
@@ -40,25 +41,42 @@
     };
 
     /*
-     * function to extend to objects
-     * @params primaryObject object, secondaryObject object
-     * @return object
+     * function to load images
+     * @params el HTMLElement
+     * @returns
      */
 
     loadImg = function li(el) {
+        /*
+         * set primary background before any image loads
+         */
+
         el.style.background = '#eee';
 
-        if (defaults.async) {
-            var img = new Image();
-            img
-        } else {
+        /*
+         * load images asynchronously
+         */
 
+        if (settings.async) {
+            var progressiveImg = new Image(),
+                originalImg = new Image();
+
+            originalImg.src = el.dataset.original;
+            progressiveImg.src = el.dataset.progressive;
+
+            progressiveImg.onload = function() {
+                el.src = this.src;
+                originalImg.onload = function() {
+                    el.src = this.src;
+                };
+            };
         }
+        return;
     };
 
     parseElements = function pe(elems) {
-        if (elems === 'string') {
-            document.querySelectorAll(elems);
+        if (typeof elems === 'string') {
+            loadImg.call(undefined, document.querySelector(elems));
         } else if (Array.isArray(elems)) {
             for (var i = elems.length; i >= 0; --i) {
                 loadImg.call(undefined, elems[i]);
@@ -75,10 +93,12 @@
          */
 
         settings = extend.call(undefined, defaults, options);
-
+        console.log(settings);
         /*
          * Parse HTMLElements and load them progressively
          */
+
+        parseElements.call(undefined, elems);
 
         return;
     };

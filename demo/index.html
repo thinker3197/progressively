@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Hello Fucking World!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css">
+ -->
+ <style type="text/css">
+     img {
+        height: 400px;
+        width: 400px;
+     }
+ </style>
+</head>
+
+<body>
+    <!-- <figure>
+        <div class="progressive-fill" style="height: 310px; width: 700px; position: relative; overflow: hidden; background: rgba(0, 0, 0, 0.1)">
+             <img class="progressive-image" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20" style="height: 100%; width: 100%; background-size: cover; -webkit-filter: blur(20px);">
+        </div>
+    </figure> -->
+   <!--  <figure class="progressive-media">
+        <img data-type="progressive-enhanced" src="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg">
+        <img data-type="progressive-image" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+    </figure>
+ -->    <img class="progressive" data-original="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" data-progressive="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+    <script src="../src/progressively.js"></script>
+    <script>
+        progressively('img.progressive', {
+                async: true
+        });
+    </script>
+</body>
+
+</html>
