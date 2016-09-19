@@ -23,7 +23,8 @@
 
     defaults = {
         async: true,
-        blur: 20
+        blur: 20,
+        delay: 12 // better to keep it low
     };
 
     /*
@@ -51,26 +52,37 @@
          * set primary background before any image loads
          */
 
-        el.style.background = '#eee';
+        el.style.background = '#efefef';
+
+        function load() {
+            var progressiveImg = new Image(),
+                originalImg = new Image();
+
+            progressiveImg.onload = function() {
+                el.style.cssText += '-webkit-filter: blur(20px); filter: blur(20px); -moz-filter: blur(20px);';
+                el.src = this.src;
+            };
+            originalImg.onload = function() {
+                el.src = this.src;
+                el.style.cssText -= '-webkit-filter: blur(20px); filter: blur(20px); -moz-filter: blur(20px);'
+            };
+
+            progressiveImg.src = el.dataset.progressive;
+            originalImg.src = el.dataset.original;
+        }
 
         /*
          * load images asynchronously
          */
 
         if (settings.async) {
-            var progressiveImg = new Image(),
-                originalImg = new Image();
-
-            originalImg.src = el.dataset.original;
-            progressiveImg.src = el.dataset.progressive;
-
-            progressiveImg.onload = function() {
-                el.src = this.src;
-                originalImg.onload = function() {
-                    el.src = this.src;
-                };
-            };
+            setTimeout(function() {
+                load();
+            }, settings.delay);
+        } else {
+            load();
         }
+
         return;
     };
 
@@ -93,7 +105,7 @@
          */
 
         settings = extend.call(undefined, defaults, options);
-        console.log(settings);
+
         /*
          * Parse HTMLElements and load them progressively
          */
@@ -128,4 +140,4 @@
      */
 
     window.progressively = init;
-}('undefined' !== typeof window ? window : {}));
+})(('undefined' !== typeof window ? window : {}));

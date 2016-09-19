@@ -15,19 +15,30 @@
     <!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css">
  -->
     <style type="text/css">
+    figure {
+        overflow: hidden;
+        height: 400px;
+        width: 500px;
+    }
+
     img {
         height: 400px;
-        width: 400px;
+        width: 500px;
     }
     </style>
+    <script src="../src/progressively.js" defer></script>
 </head>
 
 <body>
-    <img class="progressive" data-original="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" data-progressive="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
-    <script src="../src/progressively.js"></script>
+    <figure>
+        <img class="progressive" data-original="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" data-progressive="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+    </figure>
     <script>
-    progressively('img.progressive', {
-        async: true
+    document.addEventListener("DOMContentLoaded", function(event) {
+        console.log("DOM fully loaded and parsed");
+        progressively('img.progressive', {
+            async: true
+        });
     });
     </script>
 </body>
