@@ -15,18 +15,30 @@
     <!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css">
  -->
     <style type="text/css">
+    body {
+        margin: 2%;
+    }
+
     figure {
+        height: 200px;
+        max-width: 600px;
         overflow: hidden;
-        height: 400px;
-        width: 500px;
+        position: relative;
+    }
+
+    @media(min-width: 768px) {
+        figure {
+            height: 350px;
+        }
     }
 
     img {
-        height: 400px;
-        width: 500px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
     }
     </style>
-    <script src="progressively.js"></script>
+    <script src="../src/progressively.js"></script>
 </head>
 
 <body>
@@ -34,9 +46,7 @@
         <img class="progressive" data-original="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" data-progressive="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
     </figure>
     <script>
-        progressively('img.progressive', {
-            async: true
-        });
+    progressively('img.progressive');
     </script>
 </body>
 

@@ -25,8 +25,7 @@
     defaults = {
         async: true,
         blur: 20,
-        delay: 12, // better to keep it low
-        blurRemove: 30
+        delay: 12 // better to keep it low
     };
 
     /*
@@ -61,12 +60,10 @@
                 originalImg = new Image();
 
             progressiveImg.onload = function() {
-                el.style.cssText += '-webkit-filter: blur(20px); filter: blur(20px); -moz-filter: blur(20px);';
                 el.src = this.src;
             };
             originalImg.onload = function() {
                 el.src = this.src;
-                anim(el);
             };
 
             progressiveImg.src = el.dataset.progressive;
@@ -82,8 +79,8 @@
             setTimeout(function() {
                 load();
             }, settings.delay);
-        } else {
 
+        } else {
 
             /*
              * load images synchronously
@@ -95,25 +92,21 @@
         return;
     };
 
+    /*
+     * function to parse HTMLElements
+     * @params elems HTMLElement classifier
+     * @returns Array parsedElems
+     */
+
     parseElements = function pe(elems) {
+        var parsedElems = [];
         if (typeof elems === 'string') {
-            loadImg.call(undefined, document.querySelector(elems));
+            parsedElems.push(document.querySelectorAll(elems));
         } else if (Array.isArray(elems)) {
-            for (var i = elems.length; i >= 0; --i) {
-                loadImg.call(undefined, elems[i]);
+            for (var i = elems.length - 1; i >= 0; --i) {
+                parsedElems.push(document.querySelectorAll(elems[i]));
             }
         } else throw TypeError('Undefined format!');
-    }
-
-    anim = function a(el) {
-        for (var i = settings.blur; i > 0; --i) {
-            (function(j) {
-                setTimeout(function() {
-                    el.style.cssText -= '-webkit-filter: blur(' + j + 'px); filter: blur(' + j + 'px); -moz-filter: blur(' + j + 'px);';
-                    el.style.cssText += '-webkit-filter: blur(' + --j + 'px); filter: blur(' + --j + 'px); -moz-filter: blur(' + --j + 'px);';
-                }, settings.blurRemove * (20 - j));
-            })(i);
-        }
     }
 
     init = function(elems, options) {
@@ -126,11 +119,12 @@
 
         settings = extend.call(undefined, defaults, options);
 
+
         /*
-         * Parse HTMLElements and load them progressively
+         * Parse HTMLElements and attach scroll listeners to them
          */
 
-        parseElements.call(undefined, elems);
+        listen(parsedElems.call(undefined, elems));
 
         return;
     };
