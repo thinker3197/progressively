@@ -12,6 +12,7 @@
 
     var init,
         extend,
+        anim,
         loadImg,
         parseElements,
         defaults, settings = {},
@@ -24,7 +25,8 @@
     defaults = {
         async: true,
         blur: 20,
-        delay: 12 // better to keep it low
+        delay: 12, // better to keep it low
+        blurRemove: 30
     };
 
     /*
@@ -64,22 +66,29 @@
             };
             originalImg.onload = function() {
                 el.src = this.src;
-                el.style.cssText -= '-webkit-filter: blur(20px); filter: blur(20px); -moz-filter: blur(20px);'
+                anim(el);
             };
 
             progressiveImg.src = el.dataset.progressive;
             originalImg.src = el.dataset.original;
         }
 
-        /*
-         * load images asynchronously
-         */
-
         if (settings.async) {
+
+            /*
+             * load images asynchronously
+             */
+
             setTimeout(function() {
                 load();
             }, settings.delay);
         } else {
+
+
+            /*
+             * load images synchronously
+             */
+
             load();
         }
 
@@ -94,6 +103,17 @@
                 loadImg.call(undefined, elems[i]);
             }
         } else throw TypeError('Undefined format!');
+    }
+
+    anim = function a(el) {
+        for (var i = settings.blur; i > 0; --i) {
+            (function(j) {
+                setTimeout(function() {
+                    el.style.cssText -= '-webkit-filter: blur(' + j + 'px); filter: blur(' + j + 'px); -moz-filter: blur(' + j + 'px);';
+                    el.style.cssText += '-webkit-filter: blur(' + --j + 'px); filter: blur(' + --j + 'px); -moz-filter: blur(' + --j + 'px);';
+                }, settings.blurRemove * (20 - j));
+            })(i);
+        }
     }
 
     init = function(elems, options) {

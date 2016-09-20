@@ -26,7 +26,7 @@
         width: 500px;
     }
     </style>
-    <script src="../src/progressively.js" defer></script>
+    <script src="progressively.js" defer></script>
 </head>
 
 <body>
@@ -34,12 +34,9 @@
         <img class="progressive" data-original="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" data-progressive="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
     </figure>
     <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        console.log("DOM fully loaded and parsed");
         progressively('img.progressive', {
             async: true
         });
-    });
     </script>
 </body>
 
