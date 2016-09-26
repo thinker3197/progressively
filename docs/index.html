@@ -128,30 +128,93 @@
             text-decoration: none;
         }
     }
-}
-pre {
-    font-family: "Courier 10 Pitch", Courier, monospace;
-    font-size: 95%;
-    line-height: 140%;
-    white-space: pre;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -o-pre-wrap;
-}
-code {
-    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-    font-size: 95%;
-    line-height: 140%;
-    white-space: pre;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -o-pre-wrap;
-}
+    
+    pre {
+        font-family: "Courier 10 Pitch", Courier, monospace;
+        font-size: 95%;
+        line-height: 140%;
+        white-space: pre;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -o-pre-wrap;
+    }
+    
+    code {
+        font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+        font-size: 95%;
+        line-height: 140%;
+        white-space: pre;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -o-pre-wrap;
+    }
+    
+    @import url(http://fonts.googleapis.com/css?family=Cabin+Condensed:500&text=Fork%20me%20on%20GitHub);
+    body {
+        overflow-x: hidden;
+    }
+    
+    .ribbon {
+        position: absolute;
+        top: 42px;
+        width: 200px;
+        padding: 1px 0;
+        background: #000;
+        color: #eee;
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .ribbon.left {
+        left: -42px;
+        -moz-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    
+    .ribbon.right {
+        right: -42px;
+        -moz-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    
+    .ribbon a,
+    .ribbon a:visited,
+    .ribbon a:active,
+    .ribbon a:hover {
+        display: block;
+        padding: 1px 0;
+        height: 24px;
+        line-height: 24px;
+        color: inherit;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Cabin Condensed', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        -moz-text-shadow: 0 0 10px rgba(0, 0, 0, 0.31);
+        -webkit-text-shadow: 0 0 10px rgba(0, 0, 0, 0.31);
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.31);
+    }
+    
+    .ribbon.black {
+        background: #000;
+    }
     </style>
     <script src="progressively.min.js"></script>
 </head>
 
 <body>
+    <div class="ribbon right black">
+        <a href="https://github.com/thinker3197/progressively">Fork me on GitHub</a>
+    </div>
     <header class="heading">
         <div class="heading__title">
             <h1>Progressively</h1>
@@ -160,7 +223,7 @@ code {
         <div class="heading__info">
             <div class="heading__info--wrapper">
                 <p>Progressively is a javascript library for loading images progressively. It’s written entirely in JavaScript so it doesn’t depend on 3rd-party libraries like jQuery. It's super small,
-                    < 2kB when minified & gzipped! It will load images on when user browse to the page, saving bandwidth & server requests.
+                    < 2kB when minified & gzipped! It will load images on when user browse to the page, saving bandwidth & server requests. 
                 </p>
                 <h2>Usage & Api</h2>
                 <ul>
@@ -187,7 +250,7 @@ code {
                         <p>The init() API takes a few options</p>
                         <h4>throttle</h4>
                         <p>Type: <code>Number</code>, Default: <code>300</code></p>
-                        <p>The throttle is managed by an internal function that prevents performance issues from continuous firing of window.onscroll events. Using a throttle will set a small timeout when the user scrolls and will keep throttling until the user stops. The default is 100 milliseconds.</p>
+                        <p>The throttle is managed by an internal function that prevents performance issues from continuous firing of window.onscroll events. Using a throttle will set a small timeout when the user scrolls and will keep throttling until the user stops. The default is 300 milliseconds.</p>
                         <h4>delay</h4>
                         <p>Type: <code>Number</code>, Default: <code>100</code></p>
                         <p>The delay function sets the timout value for images to start load asynchronously. Ideally it's value should be low.</p>

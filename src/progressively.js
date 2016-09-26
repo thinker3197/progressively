@@ -1,5 +1,5 @@
 /*!
- * progressively 0.1
+ * progressively 1.0.0
  * https://github.com/thinker3197/progressively
  * @license MIT licensed
  *
@@ -70,7 +70,7 @@
     };
 
     function listen() {
-        if(!!poll)
+        if (!!poll)
             return;
         clearTimeout(poll);
         poll = setTimeout(function() {
@@ -84,7 +84,7 @@
 
     defaults = {
         throttle: 300, //appropriate value, don't change unless intended
-        delay: 12,
+        delay: 100,
         afterload: function() {},
         imgload: function() {}
     };
@@ -132,7 +132,7 @@
             if (nodes[i].classList.contains('progressive--is-loaded'))
                 counter++;
         }
-        if (counter === nodes.length-1 ) {
+        if (counter === nodes.length - 1) {
             defaults.afterload();
         }
     }
