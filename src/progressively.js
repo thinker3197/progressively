@@ -23,7 +23,9 @@
 
     var progressively = {};
 
-    var defaults, poll, useDebounce;
+    var defaults, poll, imgload;
+
+    imgload = function() {};
 
     function extend(primaryObject, secondaryObject) {
         var o = {};
@@ -51,7 +53,7 @@
 
     };
 
-    function loadImg(el, callback) {
+    function loadImg(el) {
         setTimeout(function() {
             var img = new Image();
 
@@ -59,8 +61,8 @@
                 el.src = this.src;
                 el.classList.remove('progressive--not-loaded');
                 el.classList.add('progressive--is-loaded');
-                if (typeof callback === 'function')
-                    callback();
+                imgload(el);
+                progressively.check();
             };
 
             img.src = el.dataset.progressive;
@@ -68,9 +70,8 @@
     };
 
     function listen() {
-        if (!useDebounce && !!poll) {
+        if(!!poll)
             return;
-        }
         clearTimeout(poll);
         poll = setTimeout(function() {
             progressively.render();
@@ -82,16 +83,18 @@
      */
 
     defaults = {
-        throttle: 100,
-        blur: 20,
+        throttle: 300, //appropriate value, don't change unless intended
         delay: 12,
-        imgLoaded: function(){}
+        afterload: function() {},
+        imgload: function() {}
     };
 
     progressively.init = function(options) {
         options = options || {};
 
         defaults = extend(defaults, options);
+
+        imgload = defaults.imgload || imgload;
 
         progressively.render();
 
@@ -113,21 +116,34 @@
             elem = inodes[i];
 
             if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
-                loadImg(elem, function(){
-                    defaults.imgLoaded();
-                });
+                loadImg(elem);
             }
-
         }
 
         if (!inodes.length || !fnodes.length) {
-            progressively.drop();
+            this.drop();
         }
     };
 
+    progressively.check = function() {
+        var counter = 0,
+            nodes = document.querySelectorAll('.progressive__img');
+        for (var i = nodes.length - 1; i >= 0; --i) {
+            if (nodes[i].classList.contains('progressive--is-loaded'))
+                counter++;
+        }
+        if (counter === nodes.length-1 ) {
+            defaults.afterload();
+        }
+    }
+
     progressively.drop = function() {
-        root.removeEventListener('scroll', listen);
-        root.removeEventListener('load', listen);
+        if (document.removeEventListener) {
+            root.removeEventListener('scroll', listen);
+        } else {
+            root.detachEvent('onscroll', listen);
+        }
+        clearTimeout(poll);
     };
 
     return progressively;

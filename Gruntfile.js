@@ -3,9 +3,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            options: {
-                banner: '/* MIT Licensed - progressively v0.1 */'
-            },
             build: {
                 src: 'src/progressively.js',
                 dest: 'dist/progressively.min.js'

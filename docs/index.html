@@ -12,50 +12,227 @@
     <title>Progressively - Load Images progressively</title>
     <meta name="description" content="A JavaScript library to load images progressively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="progressively.min.css">
     <style type="text/css">
     body {
-        margin: 2%;
+        margin: 0;
         background: #9692FF;
+        overflow-x: hidden;
+        font-family: 'Open Sans', sans-serif;
     }
-
+    
     figure {
         height: 200px;
-        width: 600px;
+        max-width: 600px;
+        margin: 3% auto;
     }
-
+    
+    .img-wrapper {
+        width: 300px;
+        height: auto;
+        margin: 4px auto;
+        margin-bottom: 12px;
+        position: relative;
+        background-color: #9996ff;
+        margin-left: calc(50% - 150px);
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    }
+    
+    .heading {
+        width: 100vw;
+        height: auto;
+        padding: 1%;
+        margin: -2px auto;
+        position: relative;
+    }
+    
+    .heading__title {
+        color: #FFFFFF;
+        text-align: center;
+    }
+    
+    .heading__title h1 {
+        color: #FFEFB9;
+    }
+    
+    .heading__info {
+        display: none;
+    }
+    
+    .heading__info--wrapper {
+        padding: 2%;
+        background-color: #b4b2f7;
+    }
+    
+    .foot {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15%;
+        position: relative;
+        text-align: center;
+    }
+    
+    .foot__button {
+        color: #fff;
+        font-size: 1.45em;
+        padding: 20px 60px;
+        background: #FF9800;
+        border-radius: 100px;
+        text-decoration: none;
+    }
+    
+    .header__info__button {
+        display: none;
+    }
+    
     @media(min-width: 768px) {
+        body {
+            margin: 2%;
+        }
         figure {
             height: 350px;
+            margin: 3% auto;
+        }
+        .img-wrapper {
+            width: 40vw;
+            position: absolute;
+            margin: -30px auto;
+        }
+        .heading {
+            right: 0;
+            width: 60vw;
+            position: absolute;
+        }
+        .heading__info {
+            color: #263238;
+            display: inherit;
+            padding-top: 1%;
+            padding-left: 14%;
+            padding-right: 4%;
+        }
+        .foot {
+            display: none;
+        }
+        .header__info__button {
+            color: #fff;
+            width: 100px;
+            margin: 5% 35%;
+            display: inherit;
+            overflow: hidden;
+            font-size: 1.45em;
+            padding: 20px 60px;
+            background: #FF9800;
+            border-radius: 100px;
+            text-decoration: none;
         }
     }
+}
+pre {
+    font-family: "Courier 10 Pitch", Courier, monospace;
+    font-size: 95%;
+    line-height: 140%;
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+}
+code {
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+    font-size: 95%;
+    line-height: 140%;
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+}
     </style>
     <script src="progressively.min.js"></script>
 </head>
 
 <body>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
-    </figure>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/1200/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg?q=20">
-    </figure>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*rmY-DAifY7mELufjdZFQ8w.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*rmY-DAifY7mELufjdZFQ8w.png?q=20">
-    </figure>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*nsz7abpLzf5FyFYfpCFvPA.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*nsz7abpLzf5FyFYfpCFvPA.png?q=20">
-    </figure>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg?q=20">
-    </figure>
-    <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*gYbNz3-YopUgUwrR0mFJDg.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*gYbNz3-YopUgUwrR0mFJDg.jpeg?q=20">
-    </figure>
+    <header class="heading">
+        <div class="heading__title">
+            <h1>Progressively</h1>
+            <p>A JavaScript library to load images progressively.</p>
+        </div>
+        <div class="heading__info">
+            <div class="heading__info--wrapper">
+                <p>Progressively is a javascript library for loading images progressively. It’s written entirely in JavaScript so it doesn’t depend on 3rd-party libraries like jQuery. It's super small,
+                    < 2kB when minified & gzipped! It will load images on when user browse to the page, saving bandwidth & server requests.
+                </p>
+                <h2>Usage & Api</h2>
+                <ul>
+                    <li>
+                        <h3>Installation</h3>
+                        <code>bower install progressively</code>
+                        <br>
+                        <p>OR</p>
+                        <code>npm install progressively</code>
+                    </li>
+                    <li>
+                        <h3>Add Files</h3>
+                        <code>&lt;link rel="stylesheet" src="progressively.min.css"></code>
+                        <br>
+                        <br>
+                        <code>&lt;script type="text/javascript" src="progressively.min.js"></code>
+                    </li>
+                    <li>
+                        <h3>Initialize</h3>
+                        <code>progressively.init(options);</code>
+                    </li>
+                    <li>
+                        <h3>.init() (options)</h3>
+                        <p>The init() API takes a few options</p>
+                        <h4>throttle</h4>
+                        <p>Type: <code>Number</code>, Default: <code>300</code></p>
+                        <p>The throttle is managed by an internal function that prevents performance issues from continuous firing of window.onscroll events. Using a throttle will set a small timeout when the user scrolls and will keep throttling until the user stops. The default is 100 milliseconds.</p>
+                        <h4>delay</h4>
+                        <p>Type: <code>Number</code>, Default: <code>100</code></p>
+                        <p>The delay function sets the timout value for images to start load asynchronously. Ideally it's value should be low.</p>
+                        <h4>afterload</h4>
+                        <p>Type: <code>Function</code>, Arguments: None</p>
+                        <p>The afterload function is callback function which executes when all images have loaded. It is fired when all the image elements have the <code>*--is-loaded</code> class.</p>
+                        <h4>imgload</h4>
+                        <p>Type: <code>Function</code>, Arguments: <code>HTMLElement</code></p>
+                        <p>The imgload function is invoked whenever an image elements finishes loading. It accepts HTMLElement as an argument which is the current element that is loaded.</p>
+                    </li>
+                </ul>
+            </div>
+            <a href="https://github.com/thinker3197/progressively" class="header__info__button">Download</a>
+        </div>
+    </header>
+    <div class="img-wrapper">
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+        </figure>
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/1200/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg?q=20">
+        </figure>
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*rmY-DAifY7mELufjdZFQ8w.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*rmY-DAifY7mELufjdZFQ8w.png?q=20">
+        </figure>
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*nsz7abpLzf5FyFYfpCFvPA.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*nsz7abpLzf5FyFYfpCFvPA.png?q=20">
+        </figure>
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg?q=20">
+        </figure>
+        <figure class="progressive">
+            <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*gYbNz3-YopUgUwrR0mFJDg.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*gYbNz3-YopUgUwrR0mFJDg.jpeg?q=20">
+        </figure>
+    </div>
+    <footer class="foot">
+        <a href="https://github.com/thinker3197/progressively" class="foot__button">Download</a>
+    </footer>
     <script>
     progressively.init({
-        imgLoaded: function() {
-            console.log('Image loaded!');
+        imgload: function(elem) {
+            console.log(elem);
+        },
+        afterload: function() {
+            console.log('All images loaded!');
         }
     });
     </script>
