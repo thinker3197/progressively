@@ -1,6 +1,6 @@
 /*!
  * progressively 0.1
- * https://github.com/thinker3197/progressively.js
+ * https://github.com/thinker3197/progressively
  * @license MIT licensed
  *
  * Copyright (C) 2016 Ashish
@@ -23,9 +23,7 @@
 
     var progressively = {};
 
-    var defaults, callback, poll, useDebounce;
-
-    callback = function() {};
+    var defaults, poll, useDebounce;
 
     function extend(primaryObject, secondaryObject) {
         var o = {};
@@ -59,6 +57,9 @@
 
             img.onload = function() {
                 el.src = this.src;
+                console.log('loaded');
+                el.classList.remove('progressive--not-loaded');
+                el.classList.add('progressive--is-loaded');
                 if (typeof callback === 'function')
                     callback();
             };
@@ -84,7 +85,8 @@
     defaults = {
         throttle: 250,
         blur: 20,
-        delay: 12
+        delay: 12,
+        imgLoaded: function(){}
     };
 
     progressively.init = function(options) {
@@ -104,19 +106,22 @@
     };
 
     progressively.render = function() {
-        var fnodes = document.querySelectorAll('.progressive-img'),
-            inodes = document.querySelectorAll('[data-progressive]'),
+        var inodes = document.querySelectorAll('.progressive__img'),
+            fnodes = document.querySelectorAll('.progressive'),
             elem;
 
         for (var i = inodes.length - 1; i >= 0; --i) {
             elem = inodes[i];
 
-            if (inView(elem))
-                loadImg(elem);
+            if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
+                loadImg(elem, function(){
+                    defaults.imgLoaded();
+                });
+            }
 
         }
 
-        if (!inodes.length) {
+        if (!inodes.length || !fnodes.length) {
             progressively.drop();
         }
     };

@@ -3,6 +3,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
+            options: {
+                banner: '/* MIT Licensed - progressively v0.1 */'
+            },
             build: {
                 src: 'src/progressively.js',
                 dest: 'dist/progressively.min.js'
@@ -16,10 +19,18 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: '.jshintrc'
             }
+        },
+        cssmin: {
+            target: {
+                files: {
+                    'dist/progressively.min.css': ['src/progressively.css']
+                }
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', ['uglify', 'jshint']);
+    grunt.registerTask('default', ['uglify', 'jshint', 'cssmin']);
 };
