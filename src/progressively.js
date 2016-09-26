@@ -46,8 +46,8 @@
         return (
             box.top >= 0 &&
             box.left >= 0 &&
-            box.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            box.right <= (window.innerWidth || document.documentElement.clientWidth));
+            box.bottom <= (window.innerHeight || document.el.clientHeight) &&
+            box.right <= (window.innerWidth || document.el.clientWidth));
 
     };
 
@@ -57,7 +57,6 @@
 
             img.onload = function() {
                 el.src = this.src;
-                console.log('loaded');
                 el.classList.remove('progressive--not-loaded');
                 el.classList.add('progressive--is-loaded');
                 if (typeof callback === 'function')
@@ -83,7 +82,7 @@
      */
 
     defaults = {
-        throttle: 250,
+        throttle: 100,
         blur: 20,
         delay: 12,
         imgLoaded: function(){}
@@ -126,7 +125,10 @@
         }
     };
 
-    progressively.drop = function() {};
+    progressively.drop = function() {
+        root.removeEventListener('scroll', listen);
+        root.removeEventListener('load', listen);
+    };
 
     return progressively;
 });

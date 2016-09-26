@@ -9,32 +9,25 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hello Fucking World!</title>
-    <meta name="description" content="">
+    <title>Progressively - Load Images progressively</title>
+    <meta name="description" content="A JavaScript library to load images progressively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="progressively.min.css">
     <style type="text/css">
     body {
         margin: 2%;
+        background: #9692FF;
     }
-    
+
     figure {
         height: 200px;
-        max-width: 600px;
-        overflow: hidden;
-        position: relative;
+        width: 600px;
     }
-    
+
     @media(min-width: 768px) {
         figure {
             height: 350px;
         }
-    }
-    
-    img {
-        width: 100%;
-        height: 100%;
-        position: absolute;
     }
     </style>
     <script src="progressively.min.js"></script>
@@ -54,13 +47,17 @@
         <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*nsz7abpLzf5FyFYfpCFvPA.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*nsz7abpLzf5FyFYfpCFvPA.png?q=20">
     </figure>
     <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg?q=20">
     </figure>
     <figure class="progressive">
-        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+        <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*gYbNz3-YopUgUwrR0mFJDg.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*gYbNz3-YopUgUwrR0mFJDg.jpeg?q=20">
     </figure>
     <script>
-    progressively.init();
+    progressively.init({
+        imgLoaded: function() {
+            console.log('Image loaded!');
+        }
+    });
     </script>
 </body>
 
