@@ -2,6 +2,8 @@
 
 Progressively is a javascript library for loading images progressively. It’s written entirely in JavaScript so it doesn’t depend on 3rd-party libraries like jQuery. It's super small, < 2kB when minified & gzipped! It will load images on when user browse to the page, saving bandwidth & server requests. It is compatible with all modern browsers. [Demo](https://thinker3197.github.io/progressively)
 
+![demo-image](https://raw.githubusercontent.com/thinker3197/progressively/master/demo.gif)
+
 ## Usage & Api
 
 ### Installation
