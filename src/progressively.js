@@ -126,7 +126,7 @@
     };
 
     progressively.check = function() {
-        if (!inodes.length || !fnodes.length) {
+        if (!inodes.length) {
             defaults.onLoadComplete();
             this.drop();
         }
