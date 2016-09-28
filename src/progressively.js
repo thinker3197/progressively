@@ -23,9 +23,9 @@
 
     var progressively = {};
 
-    var defaults, poll, imgload;
+    var defaults, poll, onLoad, inodes;
 
-    imgload = function() {};
+    onLoad = function() {};
 
     function extend(primaryObject, secondaryObject) {
         var o = {};
@@ -53,16 +53,16 @@
 
     };
 
-    function loadImg(el) {
+    function loadImage(el) {
         setTimeout(function() {
             var img = new Image();
 
             img.onload = function() {
-                el.src = this.src;
                 el.classList.remove('progressive--not-loaded');
                 el.classList.add('progressive--is-loaded');
-                imgload(el);
-                progressively.check();
+                el.src = this.src;
+
+                onLoad(el);
             };
 
             img.src = el.dataset.progressive;
@@ -74,6 +74,7 @@
             return;
         clearTimeout(poll);
         poll = setTimeout(function() {
+            progressively.check();
             progressively.render();
             poll = null;
         }, defaults.throttle);
@@ -85,8 +86,8 @@
     defaults = {
         throttle: 300, //appropriate value, don't change unless intended
         delay: 100,
-        afterload: function() {},
-        imgload: function() {}
+        onLoadComplete: function() {},
+        onLoad: function() {}
     };
 
     progressively.init = function(options) {
@@ -94,7 +95,9 @@
 
         defaults = extend(defaults, options);
 
-        imgload = defaults.imgload || imgload;
+        onLoad = defaults.onLoad || onLoad;
+
+        inodes = [].slice.call(document.querySelectorAll('.progressive__img'));
 
         progressively.render();
 
@@ -108,32 +111,24 @@
     };
 
     progressively.render = function() {
-        var inodes = document.querySelectorAll('.progressive__img'),
-            fnodes = document.querySelectorAll('.progressive'),
-            elem;
+        var elem;
 
         for (var i = inodes.length - 1; i >= 0; --i) {
             elem = inodes[i];
 
             if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
-                loadImg(elem);
+                loadImage(elem);
+                inodes.splice(i, 1);
             }
         }
 
-        if (!inodes.length || !fnodes.length) {
-            this.drop();
-        }
+        this.check();
     };
 
     progressively.check = function() {
-        var counter = 0,
-            nodes = document.querySelectorAll('.progressive__img');
-        for (var i = nodes.length - 1; i >= 0; --i) {
-            if (nodes[i].classList.contains('progressive--is-loaded'))
-                counter++;
-        }
-        if (counter === nodes.length - 1) {
-            defaults.afterload();
+        if (!inodes.length || !fnodes.length) {
+            defaults.onLoadComplete();
+            this.drop();
         }
     }
 

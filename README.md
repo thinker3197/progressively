@@ -15,7 +15,7 @@ npm install progressively
 
 ```html
 <head>
-  <link src="progressively.min.js">
+  <link src="progressively.min.css">
 </head>
 <body>
 
@@ -25,7 +25,7 @@ npm install progressively
 
   <script src="progressively.min.js"></script>
   <script>
-  progressively.init(options);
+    progressively.init(options);
   </script>
 </body>
 ```
@@ -45,12 +45,12 @@ Type: `Number` Default: `100` value
 
 The `delay` function sets the timout value for images to start load asynchronously. Ideally it's value should be low.
 
-#### afterload
+#### onloadComplete
 Type: `Function` Arguments: `None`
 
 The `afterload` function is callback function which executes when all images have loaded. It is fired when all the image elements have the `*--is-loaded` class.
 
-#### imgLoad
+#### onload
 Type: `Function` Arguments: `HTMLElement`
 
 The `imgload` function is invoked whenever an image elements finishes loading. It accepts `HTMLElement` as an argument which is the current element that is loaded.

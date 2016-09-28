@@ -12,8 +12,9 @@
     <title>Progressively - Load Images progressively</title>
     <meta name="description" content="A JavaScript library to load images progressively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="progressively.min.css">
+    <link rel="stylesheet" href="../src/progressively.css">
     <style type="text/css">
     body {
         margin: 0;
@@ -208,7 +209,6 @@
         background: #000;
     }
     </style>
-    <script src="progressively.min.js"></script>
 </head>
 
 <body>
@@ -254,12 +254,12 @@
                         <h4>delay</h4>
                         <p>Type: <code>Number</code>, Default: <code>100</code></p>
                         <p>The delay function sets the timout value for images to start load asynchronously. Ideally it's value should be low.</p>
-                        <h4>afterload</h4>
-                        <p>Type: <code>Function</code>, Arguments: None</p>
-                        <p>The afterload function is callback function which executes when all images have loaded. It is fired when all the image elements have the <code>*--is-loaded</code> class.</p>
-                        <h4>imgload</h4>
+                        <h4>onLoad</h4>
                         <p>Type: <code>Function</code>, Arguments: <code>HTMLElement</code></p>
                         <p>The imgload function is invoked whenever an image elements finishes loading. It accepts HTMLElement as an argument which is the current element that is loaded.</p>
+                        <h4>onLoadComplete</h4>
+                        <p>Type: <code>Function</code>, Arguments: None</p>
+                        <p>The afterload function is callback function which executes when all images have loaded. It is fired when all the image elements have the <code>*--is-loaded</code> class.</p>
                     </li>
                 </ul>
             </div>
@@ -289,12 +289,10 @@
     <footer class="foot">
         <a href="https://github.com/thinker3197/progressively" class="foot__button">Download</a>
     </footer>
+    <script src="../src/progressively.js"></script>
     <script>
     progressively.init({
-        imgload: function(elem) {
-            console.log(elem);
-        },
-        afterload: function() {
+        onLoadComplete: function() {
             console.log('All images loaded!');
         }
     });
