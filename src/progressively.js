@@ -45,11 +45,15 @@
         }
 
         var box = el.getBoundingClientRect();
-        return (
+          return (
             box.top >= 0 &&
             box.left >= 0 &&
-            box.bottom <= (window.innerHeight || document.el.clientHeight) &&
-            box.right <= (window.innerWidth || document.el.clientWidth));
+            (
+               (box.bottom <= (window.innerHeight || document.el.clientHeight) &&
+                box.right <= (window.innerWidth || document.el.clientWidth)) || 
+               (el.clientHeight >= window.innerHeight &&
+                box.right <= (window.innerWidth || document.el.clientWidth))
+            ));
 
     };
 

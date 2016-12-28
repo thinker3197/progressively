@@ -1,7 +1,7 @@
 {
-  "name": "Progressively",
+  "name": "progressively",
   "description": "A JavaScript library to load images progressively",
-  "main": "./dist/progressively.min.js",
+  "main": "./src/progressively.js",
   "authors": [
     "Ashish"
   ],
