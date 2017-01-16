@@ -16,7 +16,8 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
 }
 
 .progressive--not-loaded {

@@ -4,7 +4,7 @@
   "description": "A JavaScript library to load images progressively",
   "main": "./dist/progressively.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "grunt"
   },
   "repository": {
     "type": "git",
