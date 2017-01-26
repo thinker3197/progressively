@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="progressively.min.css">
     <style type="text/css">
+    @import url(http://fonts.googleapis.com/css?family=Cabin+Condensed:500&text=Fork%20me%20on%20GitHub);
+    
     body {
         margin: 0;
         background: #9692FF;
@@ -150,12 +152,12 @@
         white-space: -o-pre-wrap;
     }
     
-    @import url(http://fonts.googleapis.com/css?family=Cabin+Condensed:500&text=Fork%20me%20on%20GitHub);
     body {
         overflow-x: hidden;
     }
     
     .ribbon {
+        z-index: 1;
         position: absolute;
         top: 42px;
         width: 200px;
@@ -167,15 +169,6 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
     
-    .ribbon.left {
-        left: -42px;
-        -moz-transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
-    
     .ribbon.right {
         right: -42px;
         -moz-transform: rotate(45deg);
@@ -184,7 +177,7 @@
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
-    
+
     .ribbon a,
     .ribbon a:visited,
     .ribbon a:active,
@@ -212,7 +205,7 @@
 </head>
 
 <body>
-    <div class="ribbon right black">
+    <div class="ribbon right black" >
         <a href="https://github.com/thinker3197/progressively">Fork me on GitHub</a>
     </div>
     <header class="heading">
