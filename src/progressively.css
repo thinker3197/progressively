@@ -24,15 +24,12 @@
     filter: blur(30px);
     -webkit-filter: blur(30px);
     -ms-filter: blur(30px);
-    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='30'); 
-    -webkit-filter: blur(30px);
 }
 
 .progressive--is-loaded {
     filter: blur(20px);
     -webkit-filter: blur(20px);
     -ms-filter: blur(20px);
-    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
     -webkit-animation: sharpen 0.5s both;
     animation: sharpen 0.5s both;
 }
@@ -42,13 +39,11 @@
         filter: blur(20px);
         -webkit-filter: blur(20px);
         -ms-filter: blur(20px);
-        filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
     }
     to {
         filter: blur(0px);
         -webkit-filter: blur(0px);
         -ms-filter: blur(0px);
-        filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
     }
 }
 
@@ -57,13 +52,10 @@
         filter: blur(20px);
         -webkit-filter: blur(20px);
         -ms-filter: blur(20px);
-        filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
     }
     to {
-        filter: blur(20px);
-        -webkit-filter: blur(20px);
-        -ms-filter: blur(20px);
-        
-        filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='20');
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -ms-filter: blur(0px);
     }
 }
