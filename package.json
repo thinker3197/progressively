@@ -2,7 +2,7 @@
   "name": "progressively",
   "version": "1.0.0",
   "description": "A JavaScript library to load images progressively",
-  "main": "./dist/progressively.js",
+  "main": "./dist/progressively.min.js && ./dist/progressively.min.css",
   "scripts": {
     "build": "grunt"
   },
