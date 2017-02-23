@@ -7,141 +7,140 @@
  */
 
 ;
-(function(root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(function() {
-            return factory(root);
-        });
-    } else if (typeof exports === 'object') {
-        module.exports = factory;
-    } else {
-        root.progressively = factory(root);
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return factory(root)
+    })
+  } else if (typeof exports === 'object') {
+    module.exports = factory
+  } else {
+    root.progressively = factory(root)
+  }
+})(this, function (root) {
+  'use strict'
+
+  var progressively = {}
+
+  var defaults, poll, onLoad, inodes
+
+  onLoad = function () {}
+
+  function extend (primaryObject, secondaryObject) {
+    var o = {}
+    for (var prop in primaryObject) {
+      o[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop]
     }
-})(this, function(root) {
+    return o
+  };
 
-    'use strict';
+  function isHidden (el) {
+    return (el.offsetParent === null)
+  };
 
-    var progressively = {};
+  function inView (el, view) {
+    if (isHidden(el)) {
+      return false
+    }
 
-    var defaults, poll, onLoad, inodes;
-
-    onLoad = function() {};
-
-    function extend(primaryObject, secondaryObject) {
-        var o = {};
-        for (var prop in primaryObject) {
-            o[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop];
-        }
-        return o;
-    };
-
-    function isHidden(el) {
-        return (el.offsetParent === null);
-    };
-
-    function inView(el, view) {
-        if (isHidden(el)) {
-            return false;
-        }
-
-        var box = el.getBoundingClientRect();
-        return (
+    var box = el.getBoundingClientRect()
+    return (
             box.top >= 0 &&
             box.left >= 0 &&
             box.right <= (window.innerWidth || document.el.clientWidth) &&
             box.bottom <= (window.innerHeight || document.el.clientHeight) ||
             el.clientHeight >= window.innerHeight
-        );
+    )
+  };
 
-    };
+  function loadImage (el) {
+    setTimeout(function () {
+      var img = new Image()
 
-    function loadImage(el) {
-        setTimeout(function() {
-            var img = new Image();
+      img.onload = function () {
+        el.classList.remove('progressive--not-loaded')
+        el.classList.add('progressive--is-loaded')
+        el.src = this.src
 
-            img.onload = function() {
-                el.classList.remove('progressive--not-loaded');
-                el.classList.add('progressive--is-loaded');
-                el.src = this.src;
+        onLoad(el)
+      }
 
-                onLoad(el);
-            };
+      img.src = el.dataset.progressive
+    }, defaults.delay)
+  };
 
-            img.src = el.dataset.progressive;
-        }, defaults.delay);
-    };
-
-    function listen() {
-        if (!!poll)
-            return;
-        clearTimeout(poll);
-        poll = setTimeout(function() {
-            progressively.check();
-            progressively.render();
-            poll = null;
-        }, defaults.throttle);
+  function listen () {
+    if (poll) {
+      return
     }
+    clearTimeout(poll)
+    poll = setTimeout(function () {
+      progressively.check()
+      progressively.render()
+      poll = null
+    }, defaults.throttle)
+  }
     /*
      * default settings
      */
 
-    defaults = {
-        throttle: 300, //appropriate value, don't change unless intended
-        delay: 100,
-        onLoadComplete: function() {},
-        onLoad: function() {}
-    };
+  defaults = {
+    throttle: 300, // appropriate value, don't change unless intended
+    delay: 100,
+    onLoadComplete: function () {},
+    onLoad: function () {}
+  }
 
-    progressively.init = function(options) {
-        options = options || {};
+  progressively.init = function (options) {
+    options = options || {}
 
-        defaults = extend(defaults, options);
+    defaults = extend(defaults, options)
 
-        onLoad = defaults.onLoad || onLoad;
+    onLoad = defaults.onLoad || onLoad
 
-        inodes = [].slice.call(document.querySelectorAll('.progressive__img'));
+    inodes = [].slice.call(document.querySelectorAll('.progressive__img'))
 
-        progressively.render();
+    progressively.render()
 
-        if (document.addEventListener) {
-            root.addEventListener('scroll', listen, false);
-            root.addEventListener('load', listen, false);
-        } else {
-            root.attachEvent('onscroll', listen);
-            root.attachEvent('onload', listen);
-        }
-    };
+    if (document.addEventListener) {
+      root.addEventListener('scroll', listen, false)
+      root.addEventListener('load', listen, false)
+    } else {
+      root.attachEvent('onscroll', listen)
+      root.attachEvent('onload', listen)
+    }
+  }
 
-    progressively.render = function() {
-        var elem;
+  progressively.render = function () {
+    var elem
 
-        for (var i = inodes.length - 1; i >= 0; --i) {
-            elem = inodes[i];
+    for (var i = inodes.length - 1; i >= 0; --i) {
+      elem = inodes[i]
 
-            if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
-                loadImage(elem);
-                inodes.splice(i, 1);
-            }
-        }
-
-        this.check();
-    };
-
-    progressively.check = function() {
-        if (!inodes.length) {
-            defaults.onLoadComplete();
-            this.drop();
-        }
+      if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
+        loadImage(elem)
+        inodes.splice(i, 1)
+      }
     }
 
-    progressively.drop = function() {
-        if (document.removeEventListener) {
-            root.removeEventListener('scroll', listen);
-        } else {
-            root.detachEvent('onscroll', listen);
-        }
-        clearTimeout(poll);
-    };
+    this.check()
+  }
 
-    return progressively;
-});
+  progressively.check = function () {
+    if (!inodes.length) {
+      defaults.onLoadComplete()
+      this.drop()
+    }
+  }
+
+  progressively.drop = function () {
+    if (document.removeEventListener) {
+      root.removeEventListener('scroll', listen)
+    } else {
+      root.detachEvent('onscroll', listen)
+    }
+    clearTimeout(poll)
+  }
+
+  return progressively
+})

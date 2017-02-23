@@ -4,7 +4,8 @@
   "description": "A JavaScript library to load images progressively",
   "main": "./dist/progressively.min.js && ./dist/progressively.min.css",
   "scripts": {
-    "build": "grunt"
+    "build": "grunt",
+    "lint": "standard \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,10 @@
     "grunt-cli": "^1.2.0",
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "^2.0.0"
+    "grunt-contrib-uglify": "^2.0.0",
+    "standard": "^8.6.0"
+  },
+  "standard": {
+    "globals": ["define", "Image"]
   }
 }
