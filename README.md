@@ -38,10 +38,10 @@ Then with a module bundler like [rollup](http://rollupjs.org/) or [webpack](http
 
 ```javascript
 // using ES6 modules
-import mitt from 'mitt'
+import progressively from 'progressively'
 
 // using CommonJS modules
-var mitt = require('mitt')
+var progressively = require('progressively')
 ```
 
 The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https://unpkg.com):
