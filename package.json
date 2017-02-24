@@ -5,7 +5,8 @@
   "main": "dist/progressively.min.js",
   "scripts": {
     "build": "grunt",
-    "lint": "standard \"src/**/*.js\""
+    "lint": "standard \"src/**/*.js\"",
+    "build:css": "cssnano src/progressively.css dist/progressively.min.css"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
+    "cssnano-cli": "^1.0.5",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-cssmin": "^1.0.2",
@@ -31,6 +33,9 @@
     "standard": "^8.6.0"
   },
   "standard": {
-    "globals": ["define", "Image"]
+    "globals": [
+      "define",
+      "Image"
+    ]
   }
 }
