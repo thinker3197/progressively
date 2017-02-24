@@ -26,11 +26,6 @@
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
     "cssnano-cli": "^1.0.5",
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "^2.0.0",
     "standard": "^8.6.0",
     "uglify-js": "^2.7.5"
   },
