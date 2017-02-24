@@ -34,5 +34,7 @@ Every time you write a test, remember to answer all the questions:
 Follows the [JavaScript Standard Style](http://standardjs.com/).
 
 ## Scripts
+- `npm run lint`: lint the files.
+- `npm run build:css`: minify and add vendor prefixes (if needed) the css file.
+- `npm run build:js`: uglify the js file.
 
-Description of the available npm scripts.
