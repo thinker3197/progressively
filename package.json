@@ -2,10 +2,12 @@
   "name": "progressively",
   "version": "1.0.2",
   "description": "A JavaScript library to load images progressively",
-  "main": "./dist/progressively.min.js && ./dist/progressively.min.css",
+  "main": "dist/progressively.min.js",
   "scripts": {
     "build": "grunt",
-    "lint": "standard \"src/**/*.js\""
+    "lint": "standard \"src/**/*.js\"",
+    "build:css": "cssnano src/progressively.css dist/progressively.min.css",
+    "build:js": "uglifyjs src/progressively.js -cm -o dist/progressively.min.js"
   },
   "repository": {
     "type": "git",
@@ -23,14 +25,14 @@
   },
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "^2.0.0",
-    "standard": "^8.6.0"
+    "cssnano-cli": "^1.0.5",
+    "standard": "^8.6.0",
+    "uglify-js": "^2.7.5"
   },
   "standard": {
-    "globals": ["define", "Image"]
+    "globals": [
+      "define",
+      "Image"
+    ]
   }
 }
