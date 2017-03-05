@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Progressively - Load Images progressively</title>
+  <meta name="description" content="A JavaScript library to load images progressively.">
+
+  <link rel="stylesheet" href="progressively.min.css">
+  <style type="text/css">
+    body {
+      background-color: #9996ff;
+      margin: 0;
+    }
+    figure {
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+      margin: 20px 0;
+    }
+    .img-wrapper {
+      margin: 0 auto;
+      max-width: 600px;
+      width: 80vw;
+    }
+  </style>
+</head>
+<body>
+  <div class="img-wrapper">
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg?q=20">
+    </figure>
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/1200/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*Ah5h2jCdtSGkLsEXp8IBnw.jpeg?q=20">
+    </figure>
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*rmY-DAifY7mELufjdZFQ8w.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*rmY-DAifY7mELufjdZFQ8w.png?q=20">
+    </figure>
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*nsz7abpLzf5FyFYfpCFvPA.png" src="https://cdn-images-1.medium.com/freeze/max/30/1*nsz7abpLzf5FyFYfpCFvPA.png?q=20">
+    </figure>
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/2000/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*FFExQFiUc0vVyk7MWt3uvQ.jpeg?q=20">
+    </figure>
+    <figure class="progressive">
+      <img class="progressive__img progressive--not-loaded" data-progressive="https://cdn-images-1.medium.com/max/800/1*gYbNz3-YopUgUwrR0mFJDg.jpeg" src="https://cdn-images-1.medium.com/freeze/max/30/1*gYbNz3-YopUgUwrR0mFJDg.jpeg?q=20">
+    </figure>
+  </div>
+  <script src="progressively.min.js"></script>
+  <script>
+    progressively.init({
+      onLoadComplete: function() {
+        console.log('All images loaded!');
+      }
+    })
+  </script>
+</body>
+</html>

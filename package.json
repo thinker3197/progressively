@@ -7,7 +7,8 @@
     "build": "grunt",
     "lint": "standard \"src/**/*.js\"",
     "build:css": "cssnano src/progressively.css dist/progressively.min.css",
-    "build:js": "uglifyjs src/progressively.js -cm -o dist/progressively.min.js"
+    "build:js": "uglifyjs src/progressively.js -cm -o dist/progressively.min.js",
+    "test:visual": "browser-sync start -s \"test/visual\" -s \"dist\" --files \"dist/progressively.min.js\" \"test/visual/**/*\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
+    "browser-sync": "^2.18.8",
     "cssnano-cli": "^1.0.5",
     "standard": "^8.6.0",
     "uglify-js": "^2.7.5"
