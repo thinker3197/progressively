@@ -4,7 +4,6 @@
   "description": "A JavaScript library to load images progressively",
   "main": "dist/progressively.min.js",
   "scripts": {
-    "build": "grunt",
     "lint": "standard \"src/**/*.js\"",
     "uglify:js": "uglifyjs dist/progressively.js -cm -o dist/progressively.min.js",
     "test:visual": "browser-sync start -s \"test/visual\" -s \"dist\" --files \"dist/progressively.min.js\" \"test/visual/**/*\"",
