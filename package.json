@@ -6,9 +6,10 @@
   "scripts": {
     "build": "grunt",
     "lint": "standard \"src/**/*.js\"",
-    "build:css": "cssnano src/progressively.css dist/progressively.min.css",
-    "build:js": "uglifyjs src/progressively.js -cm -o dist/progressively.min.js",
-    "test:visual": "browser-sync start -s \"test/visual\" -s \"dist\" --files \"dist/progressively.min.js\" \"test/visual/**/*\""
+    "uglify:js": "uglifyjs dist/progressively.js -cm -o dist/progressively.min.js",
+    "test:visual": "browser-sync start -s \"test/visual\" -s \"dist\" --files \"dist/progressively.min.js\" \"test/visual/**/*\"",
+    "compile:js": "rollup -c",
+    "build:js": "npm run compile:js && npm run uglify:js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,11 @@
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
     "browser-sync": "^2.18.8",
-    "cssnano-cli": "^1.0.5",
+    "cssnano": "^3.10.0",
+    "rollup": "^0.41.4",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-postcss": "^0.2.0",
+    "rollup-watch": "^3.2.2",
     "standard": "^8.6.0",
     "uglify-js": "^2.7.5"
   },
