@@ -35,6 +35,9 @@ Follows the [JavaScript Standard Style](http://standardjs.com/).
 
 ## Scripts
 - `npm run lint`: lint the files.
-- `npm run build:css`: minify and add vendor prefixes (if needed) the css file.
-- `npm run build:js`: uglify the js file.
+- `npm run uglify:js`: uglify the dist js file.
+- `npm run compile:js`: run rollup to compile the source js file.
+- `npm run build:js`: run `compile:js` and `uglify:js` in sequence.
+- `npm run test:visual`: run a server at localhost:3000 with a running example of progressively.
+- `npm run size`: see gzip size of the dist file.
 
