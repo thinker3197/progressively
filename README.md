@@ -51,12 +51,6 @@ The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https
 ```
 You can find the library on `window.progressively`.
 
-You also need to embed the css file at your page.
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/progressively/dist/progressively.min.css">
-```
-
 ## Usage
 
 Add a image to your `HTML` file setting the `src` attribute containing the lower quality image (< 20kb for ideal cases) and the `data-progressive` attribute holding the path/url to the high quality image.
