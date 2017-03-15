@@ -1,9 +1,9 @@
 /*!
- * progressively 1.0.0
+ * progressively 1.1.2
  * https://github.com/thinker3197/progressively
  * @license MIT licensed
  *
- * Copyright (C) 2016 Ashish
+ * Copyright (C) 2016-17 Ashish
  */
 
 ;
@@ -38,19 +38,31 @@
     return (el.offsetParent === null)
   };
 
-  function inView (el, view) {
+  function inView (el) {
     if (isHidden(el)) {
       return false
     }
 
     var box = el.getBoundingClientRect()
-    return (
-            box.top >= 0 &&
-            box.left >= 0 &&
-            box.right <= (window.innerWidth || document.el.clientWidth) &&
-            box.bottom <= (window.innerHeight || document.el.clientHeight) ||
-            el.clientHeight >= window.innerHeight
-    )
+    var top = box.top
+    var height = box.height
+
+    el = el.parentNode
+
+    do {
+      box = el.getBoundingClientRect()
+
+      if (top <= box.bottom === false) {
+        return false
+      }
+      if ((top + height) <= box.top) {
+        return false
+      }
+
+      el = el.parentNode
+    } while (el !== document.body)
+
+    return top <= document.documentElement.clientHeight
   };
 
   function loadImage (el) {
