@@ -61,6 +61,8 @@ You also need to embed the css file at your page.
 
 Add a image to your `HTML` file setting the `src` attribute containing the lower quality image (< 20kb for ideal cases) and the `data-progressive` attribute holding the path/url to the high quality image.
 
+You can use [lowly](https://github.com/thiamsantos/lowly) to create the images in low quality. Just run `npm i -g lowly` and then `lowly image.jpg`, after that a new image `image-lowly.jpg` will be created in the same directory of source image.
+
 ```html
 <figure class="progressive">
   <img class="progressive__img progressive--not-loaded" data-progressive="img/highQualityImg.png" src="img/lowQualityImg.png">
