@@ -77,7 +77,7 @@
         onLoad(el)
       }
 
-      img.src = el.dataset.progressive
+      img.src = el.getAttribute('data-progressive')
     }, defaults.delay)
   };
 
