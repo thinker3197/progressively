@@ -65,7 +65,7 @@ You can use [lowly](https://github.com/thiamsantos/lowly) to create the images i
 
 ```html
 <figure class="progressive">
-  <img class="progressive__img progressive--not-loaded" data-progressive="img/highQualityImg.png" src="img/lowQualityImg.png">
+	<img class="progressive__img progressive--not-loaded" data-progressive="img/highQualityImg.png" src="img/lowQualityImg.png">
 </figure>
 ```
 
@@ -76,6 +76,26 @@ progressively.init()
 ```
 
 See [demo](https://thinker3197.github.io/progressively) for examples.
+
+### Use medium quality on small screens
+
+You can add a medium version via ```data-progressive-sm``` to reduce the filesize on mobile devices with small screens.
+
+```html
+<figure class="progressive">
+	<img class="progressive__img progressive--not-loaded" data-progressive="img/highQualityImg.png" data-progressive-sm="img/mediumQualityImg.png" src="img/lowQualityImg.png">
+</figure>
+```
+
+The medium quality will be used up to 600px screen-width. This breakpoint can be varied the following options.
+
+### Use as bg-image
+
+You can also use progressively for background-images. Simply use ```progressive__bg``` instead of ```progressive__img```:
+
+```html
+<div class="progressive__bg progressive--not-loaded" data-progressive="img/highQualityImg.png" data-progressive-sm="img/mediumQualityImg.png" style="background-image: url('img/lowQualityImg.png');"></div>
+```
 
 ## API
 
@@ -93,6 +113,11 @@ Type: `Number` Default: `100` value
 
 The `delay` function sets the timout value for images to start load asynchronously. Ideally it's value should be low.
 
+#### smBreakpoint
+Type: `Number` Default: `600` value
+
+The `loadImage` function uses this value, to load images in a medium quality (if defined and if the user's viewport is smaller than smBreakpoint).
+
 #### onloadComplete
 Type: `Function` Arguments: `None`
 
@@ -105,14 +130,15 @@ The `imgload` function is invoked whenever an image elements finishes loading. I
 
 ```js
 progressively.init({
-  delay: 50,
-  throttle: 300,
-  imgload: function(elem) {
-    console.log(elem);
-  },
-  afterload: function() {
-    console.log('All images have finished loading!');
-  }
+delay: 50,
+throttle: 300,
+smBreakpoint: 600,
+imgload: function(elem) {
+console.log(elem);
+},
+afterload: function() {
+console.log('All images have finished loading!');
+}
 });
 ```
 
