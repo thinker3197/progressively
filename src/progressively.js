@@ -88,7 +88,13 @@
 			img.onload = function () {
 				el.classList.remove('progressive--not-loaded');
 				el.classList.add('progressive--is-loaded');
-				el.src = this.src;
+
+				if(el.classList.contains('progressive__bg')){
+					// Load image as css-background-image
+					el.style['background-image'] = 'url("' + this.src + '")';
+				}else{
+					el.src = this.src;
+				}
 
 				onLoad(el);
 			};
@@ -152,7 +158,7 @@
 
     	onLoad = defaults.onLoad || onLoad;
 
-    	inodes = [].slice.call(document.querySelectorAll('.progressive__img'));
+    	inodes = [].slice.call(document.querySelectorAll('.progressive__img, .progressive__bg'));
     	sminodes = [];
 
     	progressively.render();
