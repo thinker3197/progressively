@@ -18,7 +18,7 @@
 		root.progressively = factory(root);
 	}
 })(this, function(root) {
-	'use strict'
+	'use strict';
 
 	var progressively = {};
 
@@ -34,10 +34,20 @@
 		return o;
 	}
 
+	/**
+	 * Checks, if element is hidden
+	 * @param  object DOMElement
+	 * @return {Boolean}    [description]
+	 */
 	function isHidden(el) {
 		return (el.offsetParent === null);
 	}
 
+	/**
+	 * Check if element is currently visible
+	 * @param  object DOMElement
+	 * @return boolean
+	 */
 	function inView(el) {
 		if (isHidden(el)) {
 			return false;
@@ -65,6 +75,12 @@
 		return top <= document.documentElement.clientHeight;
 	}
 
+	/**
+	 * Load image and add loaded-class. Loads the minified version, if small display
+	 * @param  object DOMElement
+	 * @param  object defaults
+	 * @return boolean true, if fully loaded; false, if minified version was loaded
+	 */
 	function loadImage(el, defaults) {
 		setTimeout(function () {
 			var img = new Image();
@@ -91,10 +107,17 @@
 		}, defaults.delay);
 	}
 
+	/**
+	 * Returns the width of the client's viewport
+	 * @return integer client-width
+	 */
 	function getClientWidth(){
 		return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	}
 
+	/**
+	 * Listens to an event, and throttles
+	 */
 	function listen () {
 		if (poll) {
 			return;
@@ -118,6 +141,10 @@
     	smBreakpoint: 600
     };
 
+    /**
+     * Initializer. Finds image-elements and adds listeners.
+     * @param  object options
+     */
     progressively.init = function (options) {
     	options = options || {};
 
@@ -141,6 +168,9 @@
     	}
     };
 
+    /**
+     * Loads necessary images in small or full quality.
+     */
     progressively.render = function() {
     	var elem;
 
@@ -170,6 +200,9 @@
     	this.check();
     };
 
+    /**
+     * Check if all images are loaded in full quality, then drop.
+     */
     progressively.check = function() {
     	if (!inodes.length && !sminodes.length) {
     		defaults.onLoadComplete();
@@ -177,6 +210,9 @@
     	}
     };
 
+    /**
+     * Drops progressively-listeners
+     */
     progressively.drop = function() {
     	if (document.removeEventListener) {
     		root.removeEventListener('scroll', listen);
