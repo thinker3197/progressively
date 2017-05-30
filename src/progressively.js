@@ -103,12 +103,10 @@
       if (getClientWidth() < defaults.smBreakpoint && el.getAttribute('data-progressive-sm')) {
         el.classList.add('progressive--loaded-sm')
         img.src = el.getAttribute('data-progressive-sm')
-        return false
       }
 
       el.classList.remove('progressive--loaded-sm')
       img.src = el.getAttribute('data-progressive')
-      return true
     }, defaults.delay)
   }
 
@@ -183,8 +181,8 @@
       elem = inodes[i]
 
       if (inView(elem) && (elem.classList.contains('progressive--not-loaded') || elem.classList.contains('progressive--loaded-sm'))) {
-        if (!loadImage(elem, defaults)) {
-  // Returns false, if only minified version loaded
+        loadImage(elem, defaults)
+        if (elem.classList.contains('progressive--loaded-sm')) {
           sminodes.push(elem)
         }
         inodes.splice(i, 1)
