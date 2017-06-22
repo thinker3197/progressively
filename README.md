@@ -25,7 +25,7 @@ It’s written entirely in JavaScript so it doesn’t depend on 3rd-party librar
 This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
 
 ```sh
-$ npm install --save-dev progressively
+$ npm install --save progressively
 ```
 
 Alternatively you can use [Bower](https://bower.io/).
