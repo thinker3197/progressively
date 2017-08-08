@@ -70,7 +70,7 @@
       }
 
       el = el.parentNode
-    } while (el !== document.body)
+    } while (el !== document.body && el !== document)
 
     return top <= document.documentElement.clientHeight
   }
