@@ -35,24 +35,11 @@
   }
 
 /**
- * Checks, if element is hidden
- * @param  object DOMElement
- * @return {Boolean}    [description]
- */
-  function isHidden (el) {
-    return (el.offsetParent === null)
-  }
-
-/**
  * Check if element is currently visible
  * @param  object DOMElement
  * @return boolean
  */
   function inView (el) {
-    if (isHidden(el)) {
-      return false
-    }
-
     var box = el.getBoundingClientRect()
     var top = box.top
     var height = box.height
