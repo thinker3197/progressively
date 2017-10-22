@@ -44,9 +44,11 @@ import progressively from 'progressively'
 var progressively = require('progressively')
 ```
 
-The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https://unpkg.com):
+The [UMD](https://github.com/umdjs/umd) build is also available on CDN:
 
 ```html
+<script src="https://cdn.jsdelivr.net/npm/progressively/dist/progressively.min.js"></script>
+<!-- or -->
 <script src="https://unpkg.com/progressively/dist/progressively.min.js"></script>
 ```
 You can find the library on `window.progressively`.
@@ -54,6 +56,8 @@ You can find the library on `window.progressively`.
 You also need to embed the css file at your page.
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressively/dist/progressively.min.css">
+<!-- or -->
 <link rel="stylesheet" href="https://unpkg.com/progressively/dist/progressively.min.css">
 ```
 
