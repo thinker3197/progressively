@@ -16,15 +16,18 @@
   width: 100%;
   height: 100%;
   transform: translateZ(0);
+  transition:transform .7s cubic-bezier(0, 0.6, 0.4, 1);
 }
 
 .progressive--not-loaded {
   filter: blur(30px);
+  transform: scale(1.1);
 }
 
 .progressive--is-loaded {
   filter: blur(20px);
   animation: sharpen 0.5s both;
+  transform: scale(1);
 }
 
 @keyframes sharpen {
