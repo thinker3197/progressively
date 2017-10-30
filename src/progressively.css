@@ -20,11 +20,13 @@
 
 .progressive--not-loaded {
   filter: blur(30px);
+  transform: scale(1.1);
 }
 
 .progressive--is-loaded {
   filter: blur(20px);
   animation: sharpen 0.5s both;
+  transform: scale(1);
 }
 
 @keyframes sharpen {
