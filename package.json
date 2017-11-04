@@ -1,6 +1,6 @@
 {
   "name": "progressively",
-  "version": "1.1.5",
+  "version": "1.2.5",
   "description": "A JavaScript library to load images progressively",
   "main": "dist/progressively.min.js",
   "scripts": {
