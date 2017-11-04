@@ -122,27 +122,27 @@ Type: `Number` Default: `600` value
 
 The `loadImage` function uses this value, to load images in a medium quality (if defined and if the user's viewport is smaller than smBreakpoint).
 
-#### onloadComplete
+#### onLoadComplete
 Type: `Function` Arguments: `None`
 
-The `afterload` function is callback function which executes when all images have loaded. It is fired when all the image elements have the `*--is-loaded` class.
+The `onLoadComplete` function is callback function which executes when all images have loaded. It is fired when all the image elements have the `*--is-loaded` class.
 
-#### onload
+#### onLoad
 Type: `Function` Arguments: `HTMLElement`
 
-The `imgload` function is invoked whenever an image elements finishes loading. It accepts `HTMLElement` as an argument which is the current element that is loaded.
+The `onLoad` function is invoked whenever an image elements finishes loading. It accepts `HTMLElement` as an argument which is the current element that is loaded.
 
 ```js
 progressively.init({
   delay: 50,
   throttle: 300,
   smBreakpoint: 600,
-  imgload: function(elem) {
-  console.log(elem);
-},
-afterload: function() {
-  console.log('All images have finished loading!');
-}
+  onLoad: function(elem) {
+    console.log(elem);
+  },
+  onLoadComplete: function() {
+    console.log('All images have finished loading!');
+  }
 });
 ```
 
