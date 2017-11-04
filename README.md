@@ -111,7 +111,7 @@ Type: `Number` Default: `300`
 The `throttle` is managed by an internal function that prevents performance issues from continuous firing of `window.onscroll` events. Using a throttle will set a small timeout when the user scrolls and will keep throttling until the user stops. The default is 300 milliseconds.
 
 #### delay
-Type: `Number` Default: `0` value
+Type: `Number` Default: `100` value
 
 The `delay` function sets the timout value for images to start load asynchronously. Ideally it's value should be low.
 
