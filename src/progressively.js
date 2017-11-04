@@ -22,7 +22,7 @@
 
   var progressively = {}
 
-  var defaults, poll, onLoad, inodes, sminodes
+  var defaults, poll, onLoad, inodes
 
   onLoad = function () {}
 
@@ -77,7 +77,7 @@
         el.classList.add('progressive--is-loaded')
 
         if (el.classList.contains('progressive__bg')) {
-// Load image as css-background-image
+          // Load image as css-background-image
           el.style['background-image'] = 'url("' + this.src + '")'
         } else {
           el.src = this.src
@@ -87,13 +87,13 @@
       }
 
 // Load minified version, if viewport-width is smaller than defaults.smBreakpoint:
-      if (getClientWidth() < defaults.smBreakpoint && el.getAttribute('data-progressive-sm')) {
+      if (getClientWidth() <= defaults.smBreakpoint && el.getAttribute('data-progressive-sm')) {
         el.classList.add('progressive--loaded-sm')
         img.src = el.getAttribute('data-progressive-sm')
+      } else {
+        el.classList.remove('progressive--loaded-sm')
+        img.src = el.getAttribute('data-progressive')
       }
-
-      el.classList.remove('progressive--loaded-sm')
-      img.src = el.getAttribute('data-progressive')
     }, defaults.delay)
   }
 
@@ -143,7 +143,6 @@
     onLoad = defaults.onLoad || onLoad
 
     inodes = [].slice.call(document.querySelectorAll('.progressive__img, .progressive__bg'))
-    sminodes = []
 
     progressively.render()
 
@@ -167,23 +166,10 @@
     for (var i = inodes.length - 1; i >= 0; --i) {
       elem = inodes[i]
 
-      if (inView(elem) && (elem.classList.contains('progressive--not-loaded') || elem.classList.contains('progressive--loaded-sm'))) {
+      if (inView(elem) && elem.classList.contains('progressive--not-loaded')) {
         loadImage(elem, defaults)
-        if (elem.classList.contains('progressive--loaded-sm')) {
-          sminodes.push(elem)
-        }
+
         inodes.splice(i, 1)
-      }
-    }
-
-    if (getClientWidth() >= defaults.smBreakpoint) {
-      for (var j = sminodes.length - 1; j >= 0; --j) {
-        elem = sminodes[j]
-
-        if (inView(elem) && (elem.classList.contains('progressive--not-loaded') || elem.classList.contains('progressive--loaded-sm'))) {
-          loadImage(elem, defaults)
-          sminodes.splice(i, 1)
-        }
       }
     }
 
