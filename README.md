@@ -34,7 +34,7 @@ Alternatively you can use [Bower](https://bower.io/).
 $ bower install progressively
 ```
 
-Then with a module bundler like [rollup](http://rollupjs.org/) or [webpack](https://webpack.js.org/), use as you would anything else:
+With a module bundler like [rollup](http://rollupjs.org/) or [webpack](https://webpack.js.org/), use as you would anything else:
 
 ```javascript
 // using ES6 modules
@@ -51,9 +51,9 @@ The [UMD](https://github.com/umdjs/umd) build is also available on CDN:
 <!-- or -->
 <script src="https://unpkg.com/progressively/dist/progressively.min.js"></script>
 ```
-You can find the library on `window.progressively`.
+Once loaded, you can access the library on `window.progressively`.
 
-You also need to embed the css file at your page.
+You also need to embed the css file at your page
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressively/dist/progressively.min.css">
@@ -81,17 +81,15 @@ progressively.init()
 
 See [demo](https://thinker3197.github.io/progressively) for examples.
 
-### Use medium quality on small screens
+### Use medium quality images for mobile devices
 
-You can add a medium version via `data-progressive-sm` to reduce the filesize on mobile devices with small screens.
+You can add a medium resolution image via `data-progressive-sm` to reduce the filesize on mobile devices with small screens. The default breakpoint for loading `progressive-sm` image is `600` (in device independent pixels). Progressively will load the `data-progressive-sm` image when the user's device width is less than `smBreakpoint` value.
 
 ```html
 <figure class="progressive">
   <img class="progressive__img progressive--not-loaded" data-progressive="img/highQualityImg.png" data-progressive-sm="img/mediumQualityImg.png" src="img/lowQualityImg.png">
 </figure>
 ```
-
-The medium quality will be used up to 600px screen-width. This breakpoint can be varied the following options.
 
 ### Use as bg-image
 
@@ -113,7 +111,7 @@ Type: `Number` Default: `300`
 The `throttle` is managed by an internal function that prevents performance issues from continuous firing of `window.onscroll` events. Using a throttle will set a small timeout when the user scrolls and will keep throttling until the user stops. The default is 300 milliseconds.
 
 #### delay
-Type: `Number` Default: `100` value
+Type: `Number` Default: `0` value
 
 The `delay` function sets the timout value for images to start load asynchronously. Ideally it's value should be low.
 
