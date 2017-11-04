@@ -180,7 +180,7 @@
  * Check if all images are loaded in full quality, then drop.
  */
   progressively.check = function () {
-    if (!inodes.length && !sminodes.length) {
+    if (!inodes.length) {
       defaults.onLoadComplete()
       this.drop()
     }
