@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "checkJs": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+  },
+  "include": [
+    "src/"
+  ]
+}

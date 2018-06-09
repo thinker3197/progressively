@@ -5,8 +5,9 @@
   "main": "dist/progressively.min.js",
   "scripts": {
     "lint": "standard \"src/**/*.js\"",
-    "build:css": "cssnano src/progressively.css dist/progressively.min.css",
-    "build:js": "uglifyjs src/progressively.js -cm -o dist/progressively.min.js"
+    "build:css": "postcss src/*.css --no-map -u cssnano -u autoprefixer -o dist/progressively.min.css",
+    "build:js": "webpack -p",
+    "prepublish": "npm run lint && npm run build:css && npm run build:js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,45 @@
   },
   "homepage": "https://github.com/thinker3197/progressively/blob/master/README.md",
   "devDependencies": {
-    "cssnano-cli": "^1.0.5",
+    "autoprefixer": "^8.6.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "cssnano": "^4.0.0-rc.2",
+    "eslint": "^4.19.1",
+    "postcss-cli": "^5.0.0",
     "standard": "^8.6.0",
-    "uglify-js": "^3.0.11"
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3"
   },
+  "browserslist": [
+    "IE 9"
+  ],
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": "es6",
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "no-var": 2,
+      "prefer-const": 1
+    }
+  },
+  "eslintIgnore": [
+    "build/*",
+    "dist/*",
+    "webpack.*"
+  ],
   "standard": {
     "globals": [
       "define",
