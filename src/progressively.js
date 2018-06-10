@@ -7,12 +7,7 @@
 */
 
 /**
- * @typedef {object} ProgressivelySettings
- * @property {number} throttle
- * @property {number} delay
- * @property {() => void} onLoadComplete
- * @property {(e: HTMLImageElement) => void} onLoad
- * @property {number} smBreakpoint
+ * @typedef {import('progressively').ProgressivelySettings} ProgressivelySettings
  */
 
 export class Progressively {
