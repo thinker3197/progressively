@@ -129,7 +129,7 @@ export class Progressively {
   init (options) {
     const self = this
 
-    self._settings = extend(self._settings, options)
+    self._settings = { ...self._settings, ...options }
 
     self._inodes = [].slice.call(document.querySelectorAll('.progressive__img, .progressive__bg'))
 
@@ -195,15 +195,6 @@ export class Progressively {
     }
     clearTimeout(self._poll)
   }
-}
-
-/** @returns {any} */
-function extend (primaryObject, secondaryObject) {
-  const o = {}
-  for (const prop in primaryObject) {
-    o[prop] = secondaryObject.hasOwnProperty(prop) ? secondaryObject[prop] : primaryObject[prop]
-  }
-  return o
 }
 
 const progressively = new Progressively(window)

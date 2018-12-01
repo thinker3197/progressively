@@ -27,7 +27,9 @@
   "devDependencies": {
     "autoprefixer": "^8.6.2",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "cssnano": "^4.0.0-rc.2",
@@ -48,6 +50,7 @@
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaVersion": "es6",
       "sourceType": "module"
